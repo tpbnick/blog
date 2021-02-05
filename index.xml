@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nick&#39;s Blog</title>
+    <link>https://nicklyss.com/blog/</link>
+    <description>Recent content on Nick&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 04 Feb 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://nicklyss.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://nicklyss.com/blog/about/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0800</pubDate>
+      
+      <guid>https://nicklyss.com/blog/about/</guid>
+      <description>About Me Hi, my name is Nick Platt. I am currently a technical writer for Boeing Intelligence &amp;amp; Analytics and work with multiple development teams. I recently graduated from the University of Maryland with a Bachelor&amp;rsquo;s in Computer Networking and Cybersecurity. I plan on obtaining a Master&amp;rsquo;s in Software Engineering in the near future. I have basic knowledge in HTML, CSS, JavaScript, Python, SQL, Markdown, and C (hopefully more to come in the near future). Outside of work, I love watching European soccer (Go Bayern!), building keyboards, and spending time with my wife and pup. If you have any questions, please feel free to reach out to me through the contact info below.</description>
+    </item>
+    
+    <item>
+      <title>Python Word Puzzle Solver</title>
+      <link>https://nicklyss.com/blog/post/pythonpuzz/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0800</pubDate>
+      
+      <guid>https://nicklyss.com/blog/post/pythonpuzz/</guid>
+      <description>&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;We are given 7 numbers that are linked to a number in the alphabet (1=A, 2=B&amp;hellip;26=Z).  We must then use those 7 numbers to find an english word that fits the clue.  Each number, however, is linked to that letter in the alphabet, plus the next 4 letters.  This gives us n+4 combinations for the number given.  For example, if we are given the number 1, this could be A, B, C, D, E, or F.  We then must find the &lt;a href=&#34;https://www.wikiwand.com/en/Cartesian_product&#34; target=&#34;_blank&#34;&gt;cartesian product&lt;/a&gt; of all possible combinations of letters.  We must use the 7 numbers given find a single 7 letter word that fits a clue.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdown Syntax</title>
+      <link>https://nicklyss.com/blog/post/markdown-syntax/</link>
+      <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://nicklyss.com/blog/post/markdown-syntax/</guid>
+      <description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
+&lt;h2 id=&#34;headings&#34;&gt;Headings&lt;/h2&gt;
+&lt;p&gt;The following HTML &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;—&lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; elements represent six levels of section headings. &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; is the highest section level while &lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; is the lowest.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Emoji Support</title>
+      <link>https://nicklyss.com/blog/post/emoji-support/</link>
+      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://nicklyss.com/blog/post/emoji-support/</guid>
+      <description>&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://gohugo.io/functions/emojify/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;emojify&lt;/code&gt;&lt;/a&gt; function can be called directly in templates or &lt;a href=&#34;https://gohugo.io/templates/shortcode-templates/#inline-shortcodes&#34; target=&#34;_blank&#34;&gt;Inline Shortcodes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To enable emoji globally, set &lt;code&gt;enableEmoji&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; in your site’s &lt;a href=&#34;https://gohugo.io/getting-started/configuration/&#34; target=&#34;_blank&#34;&gt;configuration&lt;/a&gt; and then you can type emoji shorthand codes directly in content files; e.g.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;:s ee_no_evil:[Remove the space]&lt;/code&gt; 🙈 &lt;code&gt;:h ear_no_evil:[Remove the space]&lt;/code&gt; 🙉 &lt;code&gt;:s peak_no_evil:[Remove the space]&lt;/code&gt; 🙊&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

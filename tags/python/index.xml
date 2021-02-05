@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Nick&#39;s Blog</title>
+    <link>https://nicklyss.com/blog/tags/python/</link>
+    <description>Recent content in python on Nick&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 04 Feb 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://nicklyss.com/blog/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python Word Puzzle Solver</title>
+      <link>https://nicklyss.com/blog/post/pythonpuzz/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0800</pubDate>
+      
+      <guid>https://nicklyss.com/blog/post/pythonpuzz/</guid>
+      <description>&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;
+&lt;p&gt;We are given 7 numbers that are linked to a number in the alphabet (1=A, 2=B&amp;hellip;26=Z).  We must then use those 7 numbers to find an english word that fits the clue.  Each number, however, is linked to that letter in the alphabet, plus the next 4 letters.  This gives us n+4 combinations for the number given.  For example, if we are given the number 1, this could be A, B, C, D, E, or F.  We then must find the &lt;a href=&#34;https://www.wikiwand.com/en/Cartesian_product&#34; target=&#34;_blank&#34;&gt;cartesian product&lt;/a&gt; of all possible combinations of letters.  We must use the 7 numbers given find a single 7 letter word that fits a clue.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

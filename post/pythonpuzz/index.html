@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="HandheldFriendly" content="True" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="generator" content="Hugo 0.80.0" />
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon-16x16.png" />
+<link rel="manifest" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/site.webmanifest" />
+<link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/safari-pinned-tab.svg" color="#8aa2d3" />
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/amzrk2/cdn-stcapi@1/favicons/favicon.ico" />
+<meta name="theme-color" content="#ffffff" />
+
+
+<title>Python Word Puzzle Solver - Nick&#39;s Blog</title>
+
+
+<meta name="author" content="DSRKafuU" />
+
+
+<meta name="description" content="Using misc. Python libraries to solve complex word problems." />
+
+
+<meta name="keywords" content="python" />
+
+
+<meta property="og:title" content="Python Word Puzzle Solver" />
+<meta name="twitter:title" content="Python Word Puzzle Solver" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nicklyss.com/blog/post/pythonpuzz/" /><meta property="og:description" content="Using misc. Python libraries to solve complex word problems." />
+<meta name="twitter:description" content="Using misc. Python libraries to solve complex word problems." /><meta property="og:image" content="https://nicklyss.com/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://nicklyss.com/img/og.png" /><meta property="article:published_time" content="2021-02-04T00:00:00+08:00" /><meta property="article:modified_time" content="2021-02-04T00:00:00+08:00" />
+
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        body[data-theme='auto'] img {
+            filter: brightness(60%);
+        }
+    }
+
+    body[data-theme='dark'] img {
+        filter: brightness(60%);
+    }
+</style>
+
+
+
+<link rel="stylesheet" href="https://nicklyss.com/blog/assets/css/fuji.min.css" />
+
+
+
+
+
+</head>
+
+<body data-theme="auto">
+    <script data-cfasync="false">
+  
+  var fujiThemeData = localStorage.getItem('fuji_data-theme');
+  
+  if (!fujiThemeData) {
+    localStorage.setItem('fuji_data-theme', 'auto');
+  } else {
+    
+    if (fujiThemeData !== 'auto') {
+      document.body.setAttribute('data-theme', fujiThemeData === 'dark' ? 'dark' : 'light');
+    }
+  }
+</script>
+    <header>
+    <div class="container-lg clearfix">
+        <div class="col-12 header">
+            <a class="title-main" href="https://nicklyss.com/blog">Nick&#39;s Blog</a>
+            
+            <span class="title-sub">Hopefully interesting.</span>
+            
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="container-lg clearfix">
+            
+            <div class="col-12 col-md-9 float-left content">
+                
+<article>
+    
+    <h2 class="post-item post-title">
+        <a href="https://nicklyss.com/blog/post/pythonpuzz/">Python Word Puzzle Solver</a>
+    </h2>
+    <div class="post-item post-meta">
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-02-04</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;1327 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/blog/tags/python">python</a>&nbsp;</span>
+
+    </div>
+    
+    <div class="post-content markdown-body">
+        <h2 id="the-problem">The Problem</h2>
+<p>We are given 7 numbers that are linked to a number in the alphabet (1=A, 2=B&hellip;26=Z).  We must then use those 7 numbers to find an english word that fits the clue.  Each number, however, is linked to that letter in the alphabet, plus the next 4 letters.  This gives us n+4 combinations for the number given.  For example, if we are given the number 1, this could be A, B, C, D, E, or F.  We then must find the <a href="https://www.wikiwand.com/en/Cartesian_product" target="_blank">cartesian product</a> of all possible combinations of letters.  We must use the 7 numbers given find a single 7 letter word that fits a clue.</p>
+<p>For this example, let&rsquo;s use the following puzzle parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Clue</th>
+<th>Past tense noise of an animal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Numbers</td>
+<td>[16, 20, 1, 2, 9, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<p>The cartesian product can be illustrated as follows (only for 2 sets of 3 possibilities):
+<img class="img-zoomable" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Cartesian_Product_qtl1.svg/640px-Cartesian_Product_qtl1.svg.png?1612445941878" alt="cartesian product" />
+</p>
+<p>We will need to create a Python program that gives the cartesian products of (n+4)x7 possibilities.  We will then run all combinations against a English dictionary to find any matches to english words.</p>
+<h3 id="finding-python-libraries">Finding Python Libraries</h3>
+<p>First, we need to find a library that will create a list of all possible combinations of letters.  After some research, I found the <code>product()</code> iterator in the <a href="https://docs.python.org/3/library/itertools.html#itertools.product" target="_blank">itertools</a> library.</p>
+<p>The nested loops cycle like an odometer with the rightmost element advancing on every iteration. This pattern creates a lexicographic ordering so that if the input’s iterables are sorted, the product tuples are emitted in sorted order.</p>
+<p>We also need to use the <code>slice()</code> tool from the <a href="https://more-itertools.readthedocs.io/en/stable/" target="_blank">more-itertools library</a>.  This will yield slices of length <code>n</code> from the sequence <code>seq</code>.  For example:</p>
+<pre><code class="language-py">&gt;&gt;&gt; list(sliced((1, 2, 3, 4, 5, 6), 3))
+[(1, 2, 3), (4, 5, 6)]
+</code></pre>
+<p>Notice how we have a list of 6 individual numbers that we then set the <code>slice()</code> to be slices of <code>3</code> in length.</p>
+<p>Next, we will need to check all strings in the list, generated by the <code>product()</code> iterator, against an English dictionary.  <a href="http://pyenchant.github.io/pyenchant/" target="_blank">Pyenchant</a> is a spellchecking library for Python, based on the excellent <a href="https://abiword.github.io/enchant/" target="_blank">Enchant</a> library.  We can simply check all strings against the Pyenchant library, using <code>d.check(&quot;word&quot;)</code>, which will either give us a response of <code>True</code> or <code>False</code>.</p>
+<h2 id="building-the-program">Building the Program</h2>
+<p>First, we must import all of the libraries we will be using.</p>
+<pre><code class="language-py">import itertools
+from itertools import *
+from more_itertools import *
+import enchant
+d = enchant.Dict(&quot;en_US&quot;)
+import math
+</code></pre>
+<p>Here we import itertools, more_itertools, enchant, we swet the enchant dictionary to english (&ldquo;en_US&rdquo;), and math.</p>
+<p>We will then ask for the seven numbers and store them in a list.  We will also set limitations on what numbers can be given.  0-26 are the only numbers we will accept.  The integers will then be linked to a dictionary of number-letter pairs.</p>
+<pre><code class="language-py">letters = []
+maxLength = 7
+ 
+while len(letters) &lt; maxLength:
+    letter = int(input(&quot;Please input number: &quot;))
+    if letter &lt; 0 or letter &gt; 26:
+        print(&quot;Invalid number!&quot;)
+        break
+    letters.append(letter)
+    
+print(letters)
+ 
+letterOne = letters[0]
+letterTwo = letters[1]
+letterThree = letters[2]
+letterFour = letters[3]
+letterFive = letters[4]
+letterSix = letters[5]
+letterSeven = letters[6]
+ 
+letterNumber = {
+    0 : &quot;/abcd&quot;,
+    1 : &quot;abcde&quot;, 
+    2 : &quot;bcdef&quot;, 
+    3 : &quot;cdefg&quot;,
+    4 : &quot;defgh&quot;,
+    5 : &quot;efghi&quot;,
+    6 : &quot;fghij&quot;,
+    7 : &quot;ghijk&quot;,
+    8 : &quot;hijkl&quot;,
+    9 : &quot;ijklm&quot;,
+    10 : &quot;jklmn&quot;,
+    11 : &quot;klmno&quot;,
+    12 : &quot;lmnop&quot;,
+    13 : &quot;mnopq&quot;,
+    14 : &quot;nopqr&quot;,
+    15 : &quot;opqrs&quot;,
+    16 : &quot;pqrst&quot;,
+    17 : &quot;qrstu&quot;,
+    18 : &quot;rstuv&quot;,
+    19 : &quot;stuvw&quot;,
+    20 : &quot;tuvwx&quot;,
+    21 : &quot;uvwxy&quot;,
+    22 : &quot;vwxyz&quot;,
+    23 : &quot;wxyzz&quot;,
+    24 : &quot;xyzzz&quot;,
+    25 : &quot;yzzzz&quot;,
+    26 : &quot;zzzzz&quot;
+}
+</code></pre>
+<p>Using the above code we link the first integer given to a string of letters.  If we are looking at the numbers given at the top with the clue: <code>[16, 20, 1, 2, 9, 3, 4]</code>, this would give us the following strings <code>letterOne</code> would be <code>[&quot;pqrst&quot;]</code>, <code>letterTwo</code> would be <code>[&quot;tuvwx&quot;]</code>&hellip; and <code>letterSeven</code> would be <code>[&quot;defgh&quot;]</code>.</p>
+<p>Now we can overrite the <code>letterOne</code>-<code>letterSeven</code> variables with the string from the <code>letterNumber</code> dictionary, corresponding to that number.  Next, we can split up the five letters in each string by breaking them up by location in the string (position 0-4).</p>
+<pre><code class="language-py">letterOne = letterNumber[letterOne]
+letterTwo = letterNumber[letterTwo]
+letterThree = letterNumber[letterThree]
+letterFour = letterNumber[letterFour]
+letterFive = letterNumber[letterFive]
+letterSix = letterNumber[letterSix]
+letterSeven = letterNumber[letterSeven]
+   
+ 
+letterOne = letterOne[0], letterOne[1], letterOne[2], letterOne[3], letterOne[4]
+letterTwo = letterTwo[0], letterTwo[1], letterTwo[2], letterTwo[3], letterTwo[4]
+letterThree = letterThree[0], letterThree[1], letterThree[2], letterThree[3], letterThree[4]
+letterFour = letterFour[0], letterFour[1], letterFour[2], letterFour[3], letterFour[4]
+letterFive = letterFive[0], letterFive[1], letterFive[2], letterFive[3], letterFive[4]
+letterSix = letterSix[0], letterSix[1], letterSix[2], letterSix[3], letterSix[4]
+letterSeven = letterSeven[0], letterSeven[1], letterSeven[2], letterSeven[3], letterSeven[4]
+</code></pre>
+<p>Now we can start using the itertools <code>product()</code> iterator to find the cartesian product of <code>letterOne</code> to <code>letterSeven</code>.  We will then use the more-itertools <code>sliced()</code> to seperate the extremely long return (should be over 78,000 iterations) of letters into sets of 7.</p>
+<pre><code class="language-py">wordList = []
+counter = 0
+result = itertools.product(letterOne, letterTwo, letterThree, letterFour, letterFive, letterSix, letterSeven)
+for each in result:
+    wordList += list(each)
+    counter +=1
+ 
+wordList = (list(sliced(wordList, 7)))
+</code></pre>
+<p>For troubleshooting, we could use the following code to print out ALL 78,000+ possibilities (simply click at any point to freeze the strings displayed):</p>
+<pre><code class="language-py">print('My list:', *wordList, sep='\n')
+</code></pre>
+<p>Finally, we can check each of the strings against the enchant english dictionary.</p>
+<pre><code class="language-py">res = [''.join(ele) for ele in wordList] 
+ 
+english_words = []
+for word in res:
+    if d.check(word):
+        english_words.append(word)
+
+english_wordsLength = len(english_words)
+
+print(f&quot;{english_wordsLength} possible answer(s):&quot;)
+
+for l in english_words:
+    print(l[0:])
+</code></pre>
+<p>This will check all strings against the enchant english dictionary and append any words that have a return of <code>True</code> to the <code>english_words</code> list.  We then print the number of possible answers and each individual string!</p>
+<p>If we used the numbers given with the clue at the beginning of this post, we should have the following output:</p>
+<pre><code>[16, 20, 1, 2, 9, 3, 4]
+Number of iterations: 78125
+7 possible answer(s):
+puddled
+quacked
+ruddled
+stabled
+stacked
+steeled
+swacked
+</code></pre>
+<p>Which one is the past tense of an animal sound?</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I learned quite a bit from this little program, mainly how important it is to find helpful Python packages!  Utilizing both StackOverflow and <a href="https://pypi.org/" target="_blank">PyPi</a> to find helpful tools/code is extremely helpful.</p>
+<p>The following is the complete code for the puzzle solver:</p>
+<pre><code class="language-py">import itertools
+from itertools import *
+from more_itertools import *
+import enchant
+d = enchant.Dict(&quot;en_US&quot;)
+import math
+ 
+letters = [15, 5, 15, 15, 5, 15, 10]
+maxLength = 7
+ 
+while len(letters) &lt; maxLength:
+    letter = int(input(&quot;Please input number: &quot;))
+    if letter &lt; 0 or letter &gt; 26:
+        print(&quot;Invalid number!&quot;)
+        break
+    letters.append(letter)
+    
+print(letters)
+ 
+letterOne = letters[0]
+letterTwo = letters[1]
+letterThree = letters[2]
+letterFour = letters[3]
+letterFive = letters[4]
+letterSix = letters[5]
+letterSeven = letters[6]
+ 
+letterNumber = {
+    0 : &quot;/abcd&quot;,
+    1 : &quot;abcde&quot;, 
+    2 : &quot;bcdef&quot;, 
+    3 : &quot;cdefg&quot;,
+    4 : &quot;defgh&quot;,
+    5 : &quot;efghi&quot;,
+    6 : &quot;fghij&quot;,
+    7 : &quot;ghijk&quot;,
+    8 : &quot;hijkl&quot;,
+    9 : &quot;ijklm&quot;,
+    10 : &quot;jklmn&quot;,
+    11 : &quot;klmno&quot;,
+    12 : &quot;lmnop&quot;,
+    13 : &quot;mnopq&quot;,
+    14 : &quot;nopqr&quot;,
+    15 : &quot;opqrs&quot;,
+    16 : &quot;pqrst&quot;,
+    17 : &quot;qrstu&quot;,
+    18 : &quot;rstuv&quot;,
+    19 : &quot;stuvw&quot;,
+    20 : &quot;tuvwx&quot;,
+    21 : &quot;uvwxy&quot;,
+    22 : &quot;vwxyz&quot;,
+    23 : &quot;wxyzz&quot;,
+    24 : &quot;xyzzz&quot;,
+    25 : &quot;yzzzz&quot;,
+    26 : &quot;zzzzz&quot;
+}
+ 
+letterOne = letterNumber[letterOne]
+letterTwo = letterNumber[letterTwo]
+letterThree = letterNumber[letterThree]
+letterFour = letterNumber[letterFour]
+letterFive = letterNumber[letterFive]
+letterSix = letterNumber[letterSix]
+letterSeven = letterNumber[letterSeven]
+   
+ 
+letterOne = letterOne[0], letterOne[1], letterOne[2], letterOne[3], letterOne[4]
+letterTwo = letterTwo[0], letterTwo[1], letterTwo[2], letterTwo[3], letterTwo[4]
+letterThree = letterThree[0], letterThree[1], letterThree[2], letterThree[3], letterThree[4]
+letterFour = letterFour[0], letterFour[1], letterFour[2], letterFour[3], letterFour[4]
+letterFive = letterFive[0], letterFive[1], letterFive[2], letterFive[3], letterFive[4]
+letterSix = letterSix[0], letterSix[1], letterSix[2], letterSix[3], letterSix[4]
+letterSeven = letterSeven[0], letterSeven[1], letterSeven[2], letterSeven[3], letterSeven[4]
+ 
+wordList = []
+counter = 0
+result = itertools.product(letterOne, letterTwo, letterThree, letterFour, letterFive, letterSix, letterSeven)
+for each in result:
+    wordList += list(each)
+    counter +=1
+ 
+wordList = (list(sliced(wordList, 7)))
+ 
+#print('My list:', *wordList, sep='\n') #only needed for troubleshooting
+ 
+print(f&quot;Number of iterations: {counter:n}&quot;)
+ 
+res = [''.join(ele) for ele in wordList] 
+ 
+english_words = []
+for word in res:
+    if d.check(word):
+        english_words.append(word)
+
+english_wordsLength = len(english_words)
+
+print(f&quot;{english_wordsLength} possible answer(s):&quot;)
+
+for l in english_words:
+    print(l[0:])
+</code></pre>
+    </div>
+</article>
+
+
+
+
+            </div>
+            <aside class="col-12 col-md-3 float-left sidebar">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/blog/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/blog/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/blog/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/blog/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/tpbnick" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/nicholas-platt/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/blog/tags/about/">about</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/css/">css</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/emoji/">emoji</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/html/">html</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/markdown/">markdown</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/python/">python</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/themes/">themes</a>
+            </span>
+            
+        </div>
+    </div>
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-problem">The Problem</a>
+      <ul>
+        <li><a href="#finding-python-libraries">Finding Python Libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="#building-the-program">Building the Program</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+</aside>
+        </div>
+        <div class="btn">
+    <div class="btn-menu" id="btn-menu">
+        <i class="iconfont icon-grid-sharp"></i>
+    </div>
+    <div class="btn-toggle-mode">
+        <i class="iconfont icon-contrast-sharp"></i>
+    </div>
+    <div class="btn-scroll-top">
+        <i class="iconfont icon-chevron-up-circle-sharp"></i>
+    </div>
+</div>
+<aside class="sidebar-mobile" style="display: none;">
+  <div class="sidebar-wrapper">
+    
+    <div class="sidebar-item sidebar-pages">
+        <h3>Pages</h3>
+        <ul>
+            
+            <li>
+                <a href="/blog/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/blog/archives/">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/blog/about/">About</a>
+            </li>
+            
+            <li>
+                <a href="/blog/search/">Search</a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-links">
+        <h3>Links</h3>
+        <ul>
+            
+            <li>
+                <a href="https://github.com/tpbnick" target="_blank"><span>GitHub</span></a>
+            </li>
+            
+            <li>
+                <a href="https://www.linkedin.com/in/nicholas-platt/" target="_blank"><span>LinkedIn</span></a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="sidebar-item sidebar-tags">
+        <h3>Tags</h3>
+        <div>
+            
+            <span>
+                <a href="/blog/tags/about/">about</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/css/">css</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/emoji/">emoji</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/html/">html</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/markdown/">markdown</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/python/">python</a>
+            </span>
+            
+            <span>
+                <a href="/blog/tags/themes/">themes</a>
+            </span>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-problem">The Problem</a>
+      <ul>
+        <li><a href="#finding-python-libraries">Finding Python Libraries</a></li>
+      </ul>
+    </li>
+    <li><a href="#building-the-program">Building the Program</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+    
+    
+  </div>
+</aside>
+    </main>
+
+    <footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            
+            <span>
+            <a href="https://docs.nicklyss.com">Docs</a> | <a href="https://nicklyss.com">NickLyss</a> | <a href="https://nickplatt.dev">Blog</a> | 2020
+            </span>
+        </div>
+    </div>
+</footer>
+
+    
+<script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.0/lazysizes.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+
+
+<script defer src="/blog/assets/js/fuji.min.js"></script>
+
+
+</body>
+
+</html>
