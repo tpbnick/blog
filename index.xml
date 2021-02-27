@@ -13,7 +13,7 @@
       <pubDate>Thu, 04 Feb 2021 00:00:00 +0800</pubDate>
       
       <guid>https://blog.nicklyss.com/about/</guid>
-      <description>About Me Hi, my name is Nick Platt. I am currently a technical writer for Boeing Intelligence &amp;amp; Analytics and work with multiple development teams. I recently graduated from the University of Maryland with a Bachelor&amp;rsquo;s in Computer Networking and Cybersecurity. I plan on obtaining a Master&amp;rsquo;s in Software Engineering in the near future. I have basic knowledge in HTML, CSS, JavaScript, Python, SQL, Markdown, and C (hopefully more to come in the near future). Outside of work, I love watching European soccer (Go Bayern!), building keyboards, and spending time with my wife and pup. If you have any questions, please feel free to reach out to me through the contact info below.</description>
+      <description>About Me img[src*=&#34;#thumbnail&#34;] {border-radius: 20px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}th {border: none !important;}tr {border: none !important;}         Hi, my name is Nick Platt. I am currently a technical writer for Boeing Intelligence &amp;amp; Analytics and work with multiple development teams. I recently graduated from the University of Maryland with a Bachelor&amp;rsquo;s in Computer Networking and Cybersecurity. I began my Master&amp;rsquo;s in Software Engineering in January 2021 (WOO!). I have basic knowledge in HTML, CSS, JavaScript, Python, SQL, Markdown, and C (hopefully more to come in the near future).</description>
     </item>
     
     <item>
