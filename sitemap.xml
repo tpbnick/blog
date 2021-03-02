@@ -3,22 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.nicklyss.com/tags/javascript/</loc>
+    <lastmod>2021-03-01T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nicklyss.com/post/markdown-lightbox/</loc>
+    <lastmod>2021-03-01T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nicklyss.com/tags/markdown/</loc>
+    <lastmod>2021-03-01T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nicklyss.com/</loc>
+    <lastmod>2021-03-01T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.nicklyss.com/post/</loc>
+    <lastmod>2021-03-01T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.nicklyss.com/about/</loc>
     <lastmod>2021-02-04T00:00:00+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://blog.nicklyss.com/tags/about/</loc>
-    <lastmod>2021-02-04T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nicklyss.com/</loc>
-    <lastmod>2021-02-04T00:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nicklyss.com/post/</loc>
     <lastmod>2021-02-04T00:00:00+08:00</lastmod>
   </url>
   
@@ -39,11 +54,6 @@
   
   <url>
     <loc>https://blog.nicklyss.com/tags/html/</loc>
-    <lastmod>2020-05-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.nicklyss.com/tags/markdown/</loc>
     <lastmod>2020-05-11T00:00:00+00:00</lastmod>
   </url>
   

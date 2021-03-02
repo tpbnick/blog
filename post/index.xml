@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Nick&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 04 Feb 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://blog.nicklyss.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0800</lastBuildDate><atom:link href="https://blog.nicklyss.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lightgallery in Markdown</title>
+      <link>https://blog.nicklyss.com/post/markdown-lightbox/</link>
+      <pubDate>Mon, 01 Mar 2021 00:00:00 +0800</pubDate>
+      
+      <guid>https://blog.nicklyss.com/post/markdown-lightbox/</guid>
+      <description>&lt;p&gt;Many people use mkdocs for their documentation needs.  Implementing a working lightbox for images does seem to be hard for some people to do!  Getting a working lightbox js extension for all images in your Mardown docs is actually fairly simple, with the &lt;a href=&#34;https://github.com/g-provost/lightgallery-markdown&#34; target=&#34;_blank&#34;&gt;lightgallery-markdown&lt;/a&gt; package on Github.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Python Word Puzzle Solver</title>
       <link>https://blog.nicklyss.com/post/pythonpuzz/</link>

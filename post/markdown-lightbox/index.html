@@ -20,25 +20,25 @@
 <meta name="theme-color" content="#ffffff" />
 
 
-<title>Nick&#39;s Blog - Emoji Support</title>
+<title>Nick&#39;s Blog - Lightgallery in Markdown</title>
 
 
 <meta name="author" content="Nick" />
 
 
-<meta name="description" content="Guide to emoji usage in Hugo" />
+<meta name="description" content="Have a working js lightbox for images extension in your Markdown docs!" />
 
 
-<meta name="keywords" content="emoji" />
+<meta name="keywords" content="markdown, javascript" />
 
 
-<meta property="og:title" content="Emoji Support" />
-<meta name="twitter:title" content="Emoji Support" />
+<meta property="og:title" content="Lightgallery in Markdown" />
+<meta name="twitter:title" content="Lightgallery in Markdown" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.nicklyss.com/post/emoji-support/" /><meta property="og:description" content="Guide to emoji usage in Hugo" />
-<meta name="twitter:description" content="Guide to emoji usage in Hugo" /><meta property="og:image" content="https://blog.nicklyss.com/img/og.png" />
+<meta property="og:url" content="https://blog.nicklyss.com/post/markdown-lightbox/" /><meta property="og:description" content="Have a working js lightbox for images extension in your Markdown docs!" />
+<meta name="twitter:description" content="Have a working js lightbox for images extension in your Markdown docs!" /><meta property="og:image" content="https://blog.nicklyss.com/img/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://blog.nicklyss.com/img/og.png" /><meta property="article:published_time" content="2019-03-05T00:00:00+00:00" /><meta property="article:modified_time" content="2019-03-05T00:00:00+00:00" />
+<meta name="twitter:image" content="https://blog.nicklyss.com/img/og.png" /><meta property="article:published_time" content="2021-03-01T00:00:00+08:00" /><meta property="article:modified_time" content="2021-03-01T00:00:00+08:00" />
 
 
 <style>
@@ -96,35 +96,120 @@
 <article>
     
     <h2 class="post-item post-title">
-        <a href="https://blog.nicklyss.com/post/emoji-support/">Emoji Support</a>
+        <a href="https://blog.nicklyss.com/post/markdown-lightbox/">Lightgallery in Markdown</a>
     </h2>
     <div class="post-item post-meta">
-        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2019-03-05</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;138 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/emoji">emoji</a>&nbsp;</span>
+        <span><i class="iconfont icon-today-sharp"></i>&nbsp;2021-03-01</span><span><i class="iconfont icon-file-tray-sharp"></i>&nbsp;461 words</span><span><i class="iconfont icon-pricetags-sharp"></i>&nbsp;<a href="/tags/markdown">markdown</a>&nbsp;<a href="/tags/javascript">javascript</a>&nbsp;</span>
 
     </div>
     
     <div class="post-content markdown-body">
-        <p>Emoji can be enabled in a Hugo project in a number of ways.</p>
-<p>The <a href="https://gohugo.io/functions/emojify/" target="_blank"><code>emojify</code></a> function can be called directly in templates or <a href="https://gohugo.io/templates/shortcode-templates/#inline-shortcodes" target="_blank">Inline Shortcodes</a>.</p>
-<p>To enable emoji globally, set <code>enableEmoji</code> to <code>true</code> in your site’s <a href="https://gohugo.io/getting-started/configuration/" target="_blank">configuration</a> and then you can type emoji shorthand codes directly in content files; e.g.</p>
-<p><code>:s ee_no_evil:[Remove the space]</code> 🙈 <code>:h ear_no_evil:[Remove the space]</code> 🙉 <code>:s peak_no_evil:[Remove the space]</code> 🙊</p>
-<p>The <a href="http://www.emoji-cheat-sheet.com/" target="_blank">Emoji cheat sheet</a> is a useful reference for emoji shorthand codes.</p>
-<hr>
-<p><strong>N.B.</strong> The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.</p>
-<pre><code class="language-css">.emoji {
-    font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
-}
+        <p>Many people use mkdocs for their documentation needs.  Implementing a working lightbox for images does seem to be hard for some people to do!  Getting a working lightbox js extension for all images in your Mardown docs is actually fairly simple, with the <a href="https://github.com/g-provost/lightgallery-markdown" target="_blank">lightgallery-markdown</a> package on Github.</p>
+<p>The lightgallery-markdown extension is made to work with <a href="https://github.com/sachinchoolur/lightgallery.js" target="_blank">lightgallery.js</a>, a full featured JavaScript lightgallery/lightbox with no dependencies.</p>
+<h2 id="installation">Installation</h2>
+<p>You will need <a href="https://pip.pypa.io/en/stable/installing/" target="_blank">pip</a> to easily install the lightgallery-markdown package.</p>
+<p>To install the lightgallery-markdown package, run the following code in your terminal:</p>
+<pre><code class="language-pip">pip install lightgallery
+</code></pre>
+<h2 id="making-the-extension-work-with-mkdocs">Making the Extension Work with MKDocs</h2>
+<p>I personally use <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank">Material for MKDocs</a> for my <a href="https://docs.nicklyss.com" target="_blank">documentation site</a> and always noticed that it missed a lightbox feature for images.  The lightgallery-markdown extension can work directly with Material for MKDocs and other MKDocs themes!</p>
+<p>The following instructions will need to be done within your theme folder, either found in the MKDocs root folder in your libs packages or in the separate theme folder.  You will need to add the following folders to your theme directory:</p>
+<pre><code>theme/
+|_ css/
+|_ fonts/
+|_ img/
+|_ js/
+</code></pre>
+<p>Next, we will download the <a href="https://github.com/sachinchoolur/lightgallery.js" target="_blank">lightgallery.js</a> package from github and move the following files into the theme sub-folders created above:</p>
+<ul>
+<li>dist/js/lightgallery.min.js -&gt; theme/js/</li>
+<li>dist/css/lightgallery.min.css -&gt; theme/css/</li>
+<li>dist/fonts/lg.* -&gt; theme/fonts/</li>
+<li>dist/img/loading.gif -&gt; theme/img/</li>
+</ul>
+<p>It should look like this:</p>
+<p><img class="img-zoomable" src="https://i.imgur.com/FwnLfYM.png" alt="Material" />
+</p>
+<p>Most MKDocs themes will include a <code>main.html</code> file in the root theme folder, but if there isn&rsquo;t one, create it.  Add the following to your <code>main.html</code> file:</p>
+<pre><code class="language-js">{% extends &quot;base.html&quot; %}
+
+{% block styles %}
+    {{ super() }}
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ base_url }}/css/lightgallery.min.css&quot;&gt;
+{% endblock styles %}
+
+{% block libs %}
+    {{ super() }}
+    &lt;script src=&quot;{{ base_url }}/js/lightgallery.min.js&quot;&gt;&lt;/script&gt;
+{% endblock libs %}
+
+{% block scripts %}
+    {{ super() }}
+    &lt;script&gt;
+    var elements = document.getElementsByClassName(&quot;lightgallery&quot;);
+    for(var i=0; i&lt;elements.length; i++) {
+       lightGallery(elements[i]);
+    }
+    &lt;/script&gt;
+{% endblock scripts %}
+</code></pre>
+<p>Finally, check your <code>mkdocs.yml</code> file and make sure the theme name from your theme folder is:</p>
+<pre><code># Documentation and theme
+theme: material
+
+# Or if you used a custom theme
+theme:
+  custom_dir: 'theme'
+</code></pre>
+<p>and <code>lightgallery</code> must be added to your extensions:</p>
+<pre><code># Extensions
+markdown_extensions:
+  - lightgallery
+</code></pre>
+<h3 id="additional-settings-available">Additional settings available</h3>
+<p>All settings of the extension are optional and can be omitted.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>show_description_in_lightgallery</td>
+<td>Adds the description as caption in lightgallery dialog.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>show_description_as_inline_caption</td>
+<td>Adds the description as inline caption below the image.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>custom_inline_caption_css_class</td>
+<td>Custom CSS classes which are applied to the inline caption paragraph. Multiple classes are separated via space.</td>
+<td>Empty</td>
+</tr>
+</tbody>
+</table>
+<h2 id="writing-correct-image-markdown">Writing Correct Image Markdown</h2>
+<p>The lightgallery-markdown extension will only wrap images with an added &ldquo;!&rdquo; right after the opening &ldquo;[&rdquo; bracket of the image.  For example:</p>
+<pre><code>![!Description](/img/pic1.png)
+</code></pre>
+<p>This should give you the following HTML output when you run <code>mkdocs build</code>:</p>
+<pre><code class="language-html">&lt;p&gt;
+  &lt;div class=&quot;lightgallery&quot;&gt;
+    &lt;a href=&quot;../img/pic1.png&quot; data-sub-html=&quot;Description&quot;&gt;
+      &lt;img alt=&quot;Description&quot; src=&quot;../img/pic1.png&quot; /&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/p&gt;
 </code></pre>
     </div>
 </article>
 
-
-<div class="license markdown-body">
-    <blockquote>
-        <p>Unless otherwise noted, the content of this site is licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-               target="_blank">CC BY-NC-SA 4.0</a>.</p>
-    </blockquote>
-</div>
 
 
 
@@ -211,7 +296,18 @@
             
         </div>
     </div>
-    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#making-the-extension-work-with-mkdocs">Making the Extension Work with MKDocs</a>
+      <ul>
+        <li><a href="#additional-settings-available">Additional settings available</a></li>
+      </ul>
+    </li>
+    <li><a href="#writing-correct-image-markdown">Writing Correct Image Markdown</a></li>
+  </ul>
+</nav></div>
 </aside>
         </div>
         <div class="btn">
@@ -310,6 +406,21 @@
     </div>
     
     
+    
+    <div class="sidebar-item sidebar-toc">
+        <h3>TOC</h3>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#making-the-extension-work-with-mkdocs">Making the Extension Work with MKDocs</a>
+      <ul>
+        <li><a href="#additional-settings-available">Additional settings available</a></li>
+      </ul>
+    </li>
+    <li><a href="#writing-correct-image-markdown">Writing Correct Image Markdown</a></li>
+  </ul>
+</nav>
+    </div>
     
     
   </div>
