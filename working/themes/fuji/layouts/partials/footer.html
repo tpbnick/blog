@@ -1,0 +1,14 @@
+<footer>
+    <div class="container-lg clearfix">
+        <div class="col-12 footer">
+            {{ if .Site.Params.showLicenseInFooter }}
+            <p>
+                {{ i18n "postCopyrightFront" }}<a rel="license" href="{{ .Site.Params.licenseLink }}" target="_blank">{{ .Site.Params.license }}</a>{{ i18n "postCopyrightEnd" }}
+            </p>
+            {{ end }}
+            <span>
+                <a href="https://docs.nicklyss.com">Docs</a> | <a href="https://nicklyss.com">NickLyss</a> | <a href="https://blog.nicklyss.com">Blog</a> | 2021
+                </span>
+        </div>
+    </div>
+</footer>
